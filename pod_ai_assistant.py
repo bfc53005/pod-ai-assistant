@@ -11,7 +11,8 @@ import json
 st.set_page_config(page_title="POD AI Assistant", layout="wide")
 st.title("👕 Print-on-Demand AI Assistant")
 
-openai.api_key = st.secrets["openai"]["api_key"]
+# Ensure OpenAI API Key is set correctly
+openai.api_key = st.secrets.get("openai", {}).get("api_key", "")
 SAVE_FILE = "saved_designs.csv"
 
 # Google Sheets Setup
@@ -29,7 +30,7 @@ def generate_text(prompt, temperature=0.7):
     if not openai.api_key:
         return "Missing OpenAI API key."
     try:
-        response = openai.chat.completions.create(
+        response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}],
             temperature=temperature,
@@ -37,7 +38,6 @@ def generate_text(prompt, temperature=0.7):
         return response.choices[0].message.content.strip()
     except Exception as e:
         return f"Error: {str(e)}"
-
 
 # Helper: Save to CSV
 def save_to_csv(data_dict):
