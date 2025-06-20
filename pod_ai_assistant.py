@@ -22,7 +22,7 @@ if gsheet_enabled:
         scopes=["https://www.googleapis.com/auth/spreadsheets"]
     )
     gc = gspread.authorize(gs_credentials)
-    sheet = gc.open_by_key(st.secrets["GOOGLE_SHEET_ID"]).sheet1
+    sheet = gc.open_by_key(st.secrets["1fX6LgqzjqgbE-bjPfBtrcBKaTsw6-xDY8COTKQ69Iaw"]).sheet1
 
 # Helper: GPT prompt call
 def generate_text(prompt, temperature=0.7):
