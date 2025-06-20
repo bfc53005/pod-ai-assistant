@@ -38,6 +38,7 @@ def generate_text(prompt, temperature=0.7):
     except Exception as e:
         return f"Error: {str(e)}"
 
+
 # Helper: Save to CSV
 def save_to_csv(data_dict):
     file_exists = os.path.isfile(SAVE_FILE)
